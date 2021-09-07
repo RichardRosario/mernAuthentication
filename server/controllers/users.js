@@ -67,3 +67,45 @@ export const signUp = async (req, res) => {
 		console.log(error.message);
 	}
 };
+
+export const login = async (req, res) => {
+	const { email, password } = req.body;
+
+	try {
+		if (!email || !password)
+			return res.status(401).json({ errMassage: "all fields are required!" });
+
+		const existingUser = await User.findOne({ email: email });
+		if (!existingUser)
+			return res
+				.status(401)
+				.json({ errMassage: "Email or password is incorrect." });
+
+		const correctPassword = bcrypt.compare(password, existingUser.passwordHash);
+
+		if (!correctPassword)
+			res.status(401).json({ errMassage: "Email or password is incorrect!" });
+
+		// log the user
+		const token = jwt.sign(
+			{
+				user: existingUser._id
+			},
+			process.env.JWT_SECRET,
+			{ expiresIn: "1h" }
+		);
+
+		//send token to http only cookie
+		res
+			.cookie("mernauth", token, {
+				httpOnly: true
+			})
+			.send();
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+export const logout = () => {
+	res.cookie("mernauth", "", { httpOnly: true, expiresIn: new Date(0) });
+};
