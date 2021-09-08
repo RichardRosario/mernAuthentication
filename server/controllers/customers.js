@@ -15,14 +15,14 @@ export const createCustomer = async (req, res) => {
 	}
 };
 
-export const getCustomers = (req, res) => {
-  try {
-    // find all customers from customer table
-    const customers = await Customer.find()
+export const getCustomers = async (req, res) => {
+	try {
+		// find all customers from customer table
+		const customers = await Customer.find();
 
-    res.send(customers);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send();
-  }
-}
+		res.send(customers);
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).send();
+	}
+};
