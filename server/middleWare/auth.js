@@ -11,9 +11,9 @@ const auth = (req, res, next) => {
 		if (!verifyToken)
 			return res.status(401).json({ errMessage: "Unauthorized!" });
 		// associate token to user creator
-		// req.user = verifyToken.user;
+		req.user = verifyToken.user;
 
-		console.log(verifyToken);
+		// console.log(req.user);
 
 		next();
 	} catch (error) {

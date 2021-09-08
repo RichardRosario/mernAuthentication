@@ -9,9 +9,9 @@ export const createCustomer = async (req, res) => {
 		// save new customer
 		const savedCustomer = await newCustomer.save();
 
-		res.send(savedCustomer);
+		return res.send(savedCustomer);
 	} catch (error) {
-		res.status(401).json({ errMessage: "Unauthorized" });
+		return res.status(401).json({ errMessage: "Unauthorized" });
 	}
 };
 
@@ -20,9 +20,9 @@ export const getCustomers = async (req, res) => {
 		// find all customers from customer table
 		const customers = await Customer.find();
 
-		res.send(customers);
+		return res.send(customers);
 	} catch (error) {
 		console.log(error.message);
-		res.status(500).send();
+		return res.status(500).send();
 	}
 };

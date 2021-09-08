@@ -62,7 +62,7 @@ export const signUp = async (req, res) => {
 			})
 			.send();
 
-		res.status(200).send(createdUser);
+		return res.status(200).send(createdUser);
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -84,7 +84,9 @@ export const login = async (req, res) => {
 		const correctPassword = bcrypt.compare(password, existingUser.passwordHash);
 
 		if (!correctPassword)
-			res.status(401).json({ errMassage: "Email or password is incorrect!" });
+			return res
+				.status(401)
+				.json({ errMassage: "Email or password is incorrect!" });
 
 		// log the user
 		const token = jwt.sign(
