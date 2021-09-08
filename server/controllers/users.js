@@ -106,6 +106,7 @@ export const login = async (req, res) => {
 	}
 };
 
-export const logout = () => {
-	res.cookie("mernauth", "", { httpOnly: true, expiresIn: new Date(0) });
+export const logout = (req, res) => {
+	// set token to empty string and set date to the past
+	res.cookie("mernauth", "", { httpOnly: true, expires: new Date(0) }).send();
 };
