@@ -13,9 +13,11 @@ const app = express();
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
+
+app.use(cors());
+
 // use cookie-parser to parse all incoming cookies
 app.use(cookieParser());
-app.use(cors());
 
 // routes
 app.use("/user", userRoute);

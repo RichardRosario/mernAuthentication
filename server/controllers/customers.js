@@ -7,7 +7,7 @@ export const createCustomer = async (req, res) => {
 		// assign new customer
 		const newCustomer = new Customer({ name });
 		// save new customer
-		const savedCustomer = newCustomer.save();
+		const savedCustomer = await newCustomer.save();
 
 		res.send(savedCustomer);
 	} catch (error) {
