@@ -14,7 +14,12 @@ const app = express();
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
-app.use(cors());
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+		credentials: true
+	})
+);
 
 // use cookie-parser to parse all incoming cookies
 app.use(cookieParser());
