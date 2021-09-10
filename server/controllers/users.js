@@ -112,3 +112,17 @@ export const logout = (req, res) => {
 	// set token to empty string and set date to the past
 	res.cookie("mernauth", "", { httpOnly: true, expires: new Date(0) }).send();
 };
+
+export const loggedIn = (req, res) => {
+	try {
+		// get token from cookies
+		const token = req.cookies.mernauth;
+		if (!token) return res.json(false);
+
+		// compare and verify token with secret password
+		jwt.verify(token, process.env.JWT_SECRET);
+		res.json(true);
+	} catch (error) {
+		res.json(false);
+	}
+};

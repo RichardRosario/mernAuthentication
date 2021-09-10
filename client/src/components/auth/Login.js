@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const history = useHistory();
+	const { getLoggedIn } = useContext(AuthContext);
 
 	async function login(e) {
 		e.preventDefault();
@@ -14,14 +18,16 @@ function Login() {
 				password
 			};
 
-			await axios.post("http://localhost:5000/user/signup", loginUser);
+			await axios.post("http://localhost:5000/user/login", loginUser);
+			await getLoggedIn();
+			history.push("/");
 		} catch (error) {
 			console.error(error);
 		}
 	}
 	return (
 		<div>
-			<h1>Login page!</h1>
+			<h1>Login With Your Account!</h1>
 			<form onSubmit={login}>
 				<input
 					type='email'
