@@ -4,9 +4,9 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 
 function Login() {
+	const history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const history = useHistory();
 	const { getLoggedIn } = useContext(AuthContext);
 
 	async function login(e) {

@@ -121,7 +121,7 @@ export const loggedIn = (req, res) => {
 
 		// compare and verify token with secret password
 		jwt.verify(token, process.env.JWT_SECRET);
-		res.json(true);
+		res.send(true);
 	} catch (error) {
 		res.json(false);
 	}
