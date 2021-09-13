@@ -25,7 +25,7 @@ function Register() {
 				passwordVerify
 			};
 
-			await axios.post("http://localhost:5000/user/signup", registerUser);
+			await axios.post("http://localhost:5000/users/signup", registerUser);
 			await getLoggedIn();
 			history.push("/");
 		} catch (error) {

@@ -4,6 +4,7 @@ import Navbar from "./components/Layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import AuthContext from "./context/AuthContext";
+// import PostIndex from "./components/Posts/PostIndex";
 
 const Router = () => {
 	const { loggedIn } = useContext(AuthContext);
@@ -26,9 +27,11 @@ const Router = () => {
 						</>
 					)}
 					{loggedIn === true && (
-						<Route path='/customers'>
-							<div>Customers</div>
-						</Route>
+						<>
+							<Route path='/customers'>
+								<div>Customers</div>
+							</Route>
+						</>
 					)}
 				</Switch>
 			</BrowserRouter>

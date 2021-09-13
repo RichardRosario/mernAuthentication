@@ -7,7 +7,7 @@ function LoggedOutBtn() {
 	const history = useHistory();
 	const { getLoggedIn } = useContext(AuthContext);
 	async function logout() {
-		await axios.get("http://localhost:5000/user/logout");
+		await axios.get("http://localhost:5000/users/logout");
 		await getLoggedIn();
 		history.push("/login");
 	}

@@ -8,7 +8,7 @@ function AuthContextProvider(props) {
 
 	const getLoggedIn = async () => {
 		const loggedInResponse = await axios.get(
-			"http://localhost:5000/user/loggedIn"
+			"http://localhost:5000/users/loggedIn"
 		);
 		setLoggedIn(loggedInResponse.data);
 	};

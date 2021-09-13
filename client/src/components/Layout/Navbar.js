@@ -19,6 +19,8 @@ const Navbar = () => {
 			{loggedIn === true && (
 				<>
 					<Link to='/customers'>Customers</Link>
+					<Link to='/posts'>Posts</Link>
+
 					<LoggedOutBtn />
 				</>
 			)}
